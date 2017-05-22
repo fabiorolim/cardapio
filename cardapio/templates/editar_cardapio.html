@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block body %}
+    <h2>Novo Cardápio</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <!-- area de campos do form -->
+        <hr/>
+
+        <div id="actions" class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{% url 'cardapios:listar' %}" class="btn btn-default">Cancelar</a>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

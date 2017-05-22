@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block body %}
+    <h2>Novo Cardápio</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <!-- area de campos do form -->
+        <hr/>
+        <!--<div class="row">-->
+            <!--<div class="form-group col-md-3">-->
+                <!--<label for="data">Data</label>-->
+                <!--&lt;!&ndash;<input type="text" class="form-control" name="data_cardapio" id="id_data">&ndash;&gt;-->
+                <!--{{form.data_cardapio }}-->
+            <!--</div>-->
+
+            <!--<div class="form-group col-md-7">-->
+                <!--<label for="campo2">Prato Principal</label>-->
+                <!--&lt;!&ndash;<input type="text" class="form-control" name="prato_principal" id="id_prato_principal">&ndash;&gt;-->
+                <!--{{form.prato_principal}}-->
+            <!--</div>-->
+
+            <!--<div class="form-group col-md-5">-->
+                <!--<label for="campo3">Sobremesa</label>-->
+                <!--&lt;!&ndash;<input type="text" class="form-control" name="sobremesa" id="id_sombremesa">&ndash;&gt;-->
+                <!--{{form.sobremesa}}-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="row">-->
+            <!--<div class="form-group col-md-12">-->
+                <!--<label for="campo1">Informações Nutricionais</label>-->
+                <!--{{form.info_nutricionais}}-->
+                <!--&lt;!&ndash;<input type="text" class="form-control" name="informacoes_nutricionais"&ndash;&gt;-->
+                       <!--&lt;!&ndash;id="id_informacoes_nutricionais">&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div id="actions" class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{% url 'cardapios:listar' %}" class="btn btn-default">Cancelar</a>
+            </div>
+        </div>
+
+    </form>
+
+{% endblock %}

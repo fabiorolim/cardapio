@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block body %}
+    <div clas="panel panel-default">
+        <div class="panel-heading">
+            <h1>
+                {{ cardapio.data_cardapio }}
+            </h1>
+        </div>
+
+        <div class="painel-body">
+            <p><h3>Prato principal: {{ cardapio.prato_principal }}</h3></p>
+            <p><h3>Sobremesa: {{ cardapio.sobremesa }}</h3></p>
+            <p><h3>Informções nutricionais: {{ cardapio.info_nutricionais }}</h3></p>
+            <p><h3>Cadastrado em: {{ cardapio.data_cadastro }}</h3></p>
+            <p><h3>Por: {{ cardapio.get_usuario }}</h3></p>
+        </div>
+    </div>
+    <hr>
+    <div id="actions" class="row">
+        <div class="col-md-12">
+            <a href="{% url 'cardapios:listar' %}" class="btn btn-default">Voltar</a>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block body %}
+	<div class="col-lg-12">
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>Cardápios</h2>
+			</div>
+
+
+
+			<div class="col-sm-6 text-right h2">
+				<a class="btn btn-primary" href="{% url 'cardapios:cadastrar' %}"><i class="fa fa-plus"></i>Novo + </a>
+				<a class="btn btn-default" href="{% url 'cardapios:listar' %}"><i class="fa fa-refresh"></i> Atualizar</a>
+			</div>
+		</div>
+
+        <form method="get">
+            <input type="text" name="busca" placeholder="Buscar cardápio">
+            <button type="submit" class="btn btn-primary">
+                Buscar
+            </button>
+        </form>
+
+		<hr>
+
+		<table class="table table-hover">
+			{% if cardapios %}
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Data</th>
+						<th width="35%">Prato Principal</th>
+						<th>Opções</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for cardapio in cardapios %}
+					<tr>
+						<td>{{ cardapio.id }}</td>
+						<td>{{ cardapio.data_cardapio }}</td>
+						<td>{{ cardapio.prato_principal }}</td>
+						<td class="actions text-right">
+							<a href="{% url 'cardapios:exibir' cardapio.id %}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> Visualizar</a>
+							<a href="{% url 'cardapios:editar' cardapio.id %}" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i> Editar</a>
+							<a href="{% url 'cardapios:deletar' cardapio.id %}" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-modal"
+                               data-customer="{{cardapio.id}}">
+								<i class="fa fa-trash"></i> Excluir
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			{% else %}
+				<tr>
+					<td colspan="6">Nenhum registro encontrado.</td>
+				</tr>
+			{% endif %}
+			</tbody>
+		</table>
+
+	</div>
+{% endblock %}
