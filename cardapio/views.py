@@ -10,7 +10,7 @@ def listar(request):
        cardapios = Cardapio.objects.filter(prato_principal__icontains=query)
     else:
         cardapios = Cardapio.objects.all()
-    return render(request, 'index.html', {'cardapios': cardapios, 'usuario': get_logado(request)})
+    return render(request, 'index.html', {'cardapios': cardapios})
 
 
 @login_required
@@ -21,13 +21,13 @@ def cadastrar(request):
         cardapio.usuario = get_logado(request)
         cardapio.save()
         return redirect('cardapios:listar')
-    return render(request, 'novo_cardapio.html', {'form': form, 'usuario': get_logado(request)})
+    return render(request, 'novo_cardapio.html', {'form': form})
 
 
 @login_required
 def exibir(request, cardapio_id):
     cardapio = Cardapio.objects.get(id=cardapio_id)
-    return render(request, 'cardapio.html', {'cardapio': cardapio, 'usuario': get_logado(request)})
+    return render(request, 'cardapio.html', {'cardapio': cardapio})
 
 
 @login_required
@@ -40,7 +40,7 @@ def editar(request, cardapio_id):
             return redirect('cardapios:listar')
     else:
         form = FormularioCardapio(instance=cardapio)
-    return render(request, 'editar_cardapio.html', {'form': form, 'usuario': get_logado(request)})
+    return render(request, 'editar_cardapio.html', {'form': form})
 
 
 @login_required
@@ -53,4 +53,4 @@ def deletar(request, cardapio_id):
 
 @login_required
 def get_logado(request):
-    return request.user
+   return request.user
